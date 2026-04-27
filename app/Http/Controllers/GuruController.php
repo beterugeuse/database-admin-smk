@@ -2,51 +2,128 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GuruRequest;
 use App\Models\Guru;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GuruController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $gurus = Guru::latest()->paginate(10);
-        return view('gurus.index', compact('gurus'));
+        $guru = Guru::latest()->paginate(5);
+        return view('guru.index', compact('guru'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        return view('gurus.create');
+        return view('guru.create');
     }
 
-    public function store(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(GuruRequest $request)
     {
-        $request->validate([
-            'nip'     => 'required|string|max:20|unique:gurus,nip',
-            'nama'    => 'required|string|max:100',
-            'telepon' => 'nullable|string|max:15',
-            'alamat'  => 'nullable|string',
+
+        // upload foto
+        $foto = $request->file('foto');
+        $foto->storeAs('public/guru', $foto->hashName());
+
+        Guru::create([
+            'nip'           => $request->nip,
+            'nama_lengkap'  => $request->nama_lengkap,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'pendidikan_terakhir' => $request->pendidikan_terakhir,
+            'jabatan'       => $request->jabatan,
+            'no_telp'       => $request->no_telp,
+            'email'         => $request->email,
+            'alamat'        => $request->alamat,
+            'status_kepegawaian' => $request->status_kepegawaian,
+            'foto'          => $foto->hashName(),
         ]);
 
-        Guru::create($request->only(['nip', 'nama', 'telepon', 'alamat']));
-
-        return redirect()->route('gurus.index')->with('success', 'Data guru berhasil ditambahkan.');
+        return to_route('guru.index')->with('success', 'Data Guru berhasil disimpan!');
     }
 
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(Guru $guru)
     {
-        return view('gurus.edit', compact('guru'));
+        return view('guru.edit', compact('guru'));
     }
 
-    public function update(Request $request, Guru $guru)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(GuruRequest $request, Guru $guru)
     {
-        $data = $request->only(['nip', 'nama', 'telepon', 'alamat']);
-        $guru->update($data);
-        return to_route('gurus.index')->with('success', 'Data Siswa berhasil diupdate!');
+        if ($request->hasFile('foto')) {
+
+            // upload foto
+            $foto = $request->file('foto');
+            $foto->storeAs('public/guru/', $foto->hashName());
+
+            // delete old foto
+            Storage::delete('public/guru/' . basename($guru->foto));
+
+            // update guru with new foto
+            $guru->update([
+                'foto'          => $foto->hashName(),
+                'nip'           => $request->nip,
+                'nama_lengkap'  => $request->nama_lengkap,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'pendidikan_terakhir' => $request->pendidikan_terakhir,
+                'jabatan'       => $request->jabatan,
+                'no_telp'       => $request->no_telp,
+                'email'         => $request->email,
+                'alamat'        => $request->alamat,
+                'status_kepegawaian' => $request->status_kepegawaian,
+            ]);
+        } else {
+
+            // update guru without foto
+            $guru->update([
+                'nip'           => $request->nip,
+                'nama_lengkap'  => $request->nama_lengkap,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'pendidikan_terakhir' => $request->pendidikan_terakhir,
+                'jabatan'       => $request->jabatan,
+                'no_telp'       => $request->no_telp,
+                'email'         => $request->email,
+                'alamat'        => $request->alamat,
+                'status_kepegawaian' => $request->status_kepegawaian,
+            ]);
+        }
+
+        return to_route('guru.index')->with('success', 'Data Guru berhasil diupdate!');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(Guru $guru)
     {
+        Storage::delete('public/guru/' . basename($guru->foto));
         $guru->delete();
-        return redirect()->route('gurus.index')->with('success', 'Data guru berhasil dihapus.');
+        return redirect()->route('guru.index')->with('success', 'Data Guru berhasil dihapus!');
     }
 }

@@ -10,44 +10,27 @@
     <div class="row">
 
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card text-white shadow h-100 py-2" style="background-color: #ff4d6d;">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-white-50 text-uppercase mb-1">Total Siswa</div>
-                            <div class="h5 mb-0 font-weight-bold text-white">{{ $totalSiswa }} Orang</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-user-graduate fa-2x text-white"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card bg-primary text-white shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-white-50 text-uppercase mb-1">Total Guru</div>
-                            <div class="h5 mb-0 font-weight-bold text-white">{{ $totalGuru }} Orang</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-chalkboard-teacher fa-2x text-white"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card bg-warning text-white shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-white-50 text-uppercase mb-1">Total User</div>
                             <div class="h5 mb-0 font-weight-bold text-white">{{ $totalUser }} User</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users-cog fa-2x text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card bg-warning text-white shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-white-50 text-uppercase mb-1">Total Guru</div>
+                            <div class="h5 mb-0 font-weight-bold text-white">{{ $totalGuru }} Guru</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-users-cog fa-2x text-white"></i>

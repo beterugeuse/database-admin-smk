@@ -3,12 +3,41 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
-#[Fillable(['nis', 'nama', 'kelas', 'jurusan', 'alamat'])]
+
+#[Fillable([
+    'nis',
+    'nisn',
+    'nama_lengkap',
+    'jenis_kelamin',
+    'tanggal_lahir',
+    'agama',
+    'alamat',
+    'no_telp',
+    'email',
+    'kelas_id',
+    'status',
+    'foto'
+])]
 class Siswa extends Model
 {
-    ///** @use HasFactory<\Database\Factories\SiswaFactory> */
     use HasFactory;
+
+    protected function foto(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($foto) => url('/storage/guru/' . $foto),
+        );
+    }
+
+    public function kelas(): BelongsTo
+    {
+        return $this->belongsTo(Kelas::class);
+    }
+
+
 }
