@@ -65,7 +65,7 @@
                             {{-- Foto --}}
                             <td class="text-center">
                                 @if($g->image)
-                                        <img src="{{ $g->image }}" width="100">                                @else
+                                        <img src="{{ $g->image }}" width="100">                              @else
                                     <div style="width:45px; height:45px; border-radius:50%; background-color:#858796; display:inline-flex; align-items:center; justify-content:center;">
                                         <i class="fas fa-user" style="color:#fff; font-size:18px;"></i>
                                     </div>
