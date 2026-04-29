@@ -34,10 +34,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data Akademik</h6>
-                <a class="collapse-item" href="/kelas">Kelas</a>
                 <a class="collapse-item" href="/jurusan">Jurusan</a>
+                <a class="collapse-item" href="/kelas">Kelas</a>
                 <a class="collapse-item" href="/mata-pelajaran">Mata Pelajaran</a>
-                <a class="collapse-item" href="/jadwal-pelajaran">Jadwal Pelajaran</a>
             </div>
         </div>
     </li>

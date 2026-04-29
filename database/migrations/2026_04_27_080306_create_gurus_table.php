@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('alamat');
             $table->enum('status_kepegawaian', ['PNS', 'PPPK', 'Honorer', 'Tetap', 'Kontrak']);
-            $table->string('foto');
+            $table->string('image');
             $table->timestamps();
         });
     }

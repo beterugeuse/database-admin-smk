@@ -9,7 +9,7 @@ use App\Models\Nilai;
 use App\Http\Resources\NilaiResource;
 use Illuminate\Support\Facades\Validator;
 
-class MapelController extends Controller
+class NilaiController extends Controller
 {
     /**
      * index
@@ -18,10 +18,10 @@ class MapelController extends Controller
      */
     public function index()
     {
-        //get all mapel
+        //get all nilai
         $nilai = Nilai::latest()->paginate(5);
 
-        //return collection of mapel as a resource
+        //return collection of nilai as a resource
         return new NilaiResource(true, 'List Data Nilai', $nilai);
     }
 
@@ -32,7 +32,6 @@ class MapelController extends Controller
             'siswa_id'    => 'required|exists:siswas,id',
             'mapel_id'    => 'required|exists:mapels,id',
             'guru_id'     => 'required|exists:gurus,id',
-            'semester'    => 'required|integer|min:1|max:2',
             'nilai_uts'   => 'required|numeric|min:0|max:100',
             'nilai_uas'   => 'required|numeric|min:0|max:100',
             'nilai_akhir' => 'required|numeric|min:0|max:100',
@@ -54,7 +53,6 @@ class MapelController extends Controller
             'siswa_id'    => $request->siswa_id,
             'mapel_id'    => $request->mapel_id,
             'guru_id'     => $request->guru_id,
-            'semester'    => $request->semester,
             'nilai_uts'   => $uts,
             'nilai_uas'   => $uas,
             'nilai_akhir' => $nilai_akhir,
@@ -64,23 +62,22 @@ class MapelController extends Controller
         return new NilaiResource(true, 'Data Nilai Berhasil Ditambahkan!', $nilai);
     }
 
-    public function show($id)
+    public function show(string $id)
     {
-        //find jurusan by ID
+        //find nilai by ID
         $nilai = Nilai::find($id);
 
-        //return single book as a resource
+        //return single nilai as a resource
         return new NilaiResource(true, 'Detail Data Nilai!', $nilai);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
         //define validation rules
         $validator = Validator::make($request->all(), [
             'siswa_id'    => 'required|exists:siswas,id',
             'mapel_id'    => 'required|exists:mapels,id',
             'guru_id'     => 'required|exists:gurus,id',
-            'semester'    => 'required|integer|min:1|max:2',
             'nilai_uts'   => 'required|numeric|min:0|max:100',
             'nilai_uas'   => 'required|numeric|min:0|max:100',
             'nilai_akhir' => 'required|numeric|min:0|max:100',
@@ -105,7 +102,6 @@ class MapelController extends Controller
             'siswa_id'    => $request->siswa_id,
             'mapel_id'    => $request->mapel_id,
             'guru_id'     => $request->guru_id,
-            'semester'    => $request->semester,
             'nilai_uts'   => $uts,
             'nilai_uas'   => $uas,
             'nilai_akhir' => $nilai_akhir,
@@ -115,13 +111,13 @@ class MapelController extends Controller
         return new NilaiResource(true, 'Data Nilai Berhasil Diubah!', $nilai);
     }
 
-    public function destroy($id)
+    public function destroy(string $id)
     {
 
-        //find jurusan by ID
+        //find nilai by ID
         $nilai = Nilai::find($id);
 
-        //delete book
+        //delete nilai
         $nilai->delete();
 
         //return response

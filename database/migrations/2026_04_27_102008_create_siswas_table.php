@@ -25,7 +25,7 @@ return new class extends Migration
 
             $table->foreignId('kelas_id')->constrained('kelas')->onDelete('cascade');
             $table->enum('status', ['Aktif', 'Alumni', 'Pindah', 'Keluar']);
-            $table->string('foto');
+            $table->string('image');
             $table->timestamps();
         });
     }

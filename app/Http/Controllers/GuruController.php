@@ -31,12 +31,12 @@ class GuruController extends Controller
      */
     public function store(GuruRequest $request)
     {
-
         // upload foto
-        $foto = $request->file('foto');
-        $foto->storeAs('public/guru', $foto->hashName());
+        $image = $request->file('image');
+        $image->storeAs('gurus', $image->hashName(), 'public');
 
-        Guru::create([
+        //create guru
+        $guru = Guru::create([
             'nip'           => $request->nip,
             'nama_lengkap'  => $request->nama_lengkap,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -47,18 +47,19 @@ class GuruController extends Controller
             'email'         => $request->email,
             'alamat'        => $request->alamat,
             'status_kepegawaian' => $request->status_kepegawaian,
-            'foto'          => $foto->hashName(),
+            'image'          => $image->hashName(),
         ]);
 
-        return to_route('guru.index')->with('success', 'Data Guru berhasil disimpan!');
+
+        return redirect()->route('guru.index')->with('success', 'Data Berhasil Disimpan!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Guru $guru)
     {
-        //
+        return view('guru.show', compact('guru'));
     }
 
     /**
@@ -74,18 +75,18 @@ class GuruController extends Controller
      */
     public function update(GuruRequest $request, Guru $guru)
     {
-        if ($request->hasFile('foto')) {
+        if ($request->hasFile('image')) {
 
             // upload foto
-            $foto = $request->file('foto');
-            $foto->storeAs('public/guru/', $foto->hashName());
+            $image = $request->file('image');
+            $image->storeAs('gurus', $image->hashName(), 'public');
 
             // delete old foto
-            Storage::delete('public/guru/' . basename($guru->foto));
+            Storage::disk('public')->delete('gurus/' . basename($guru->image));
 
             // update guru with new foto
             $guru->update([
-                'foto'          => $foto->hashName(),
+                'image'          => $image->hashName(),
                 'nip'           => $request->nip,
                 'nama_lengkap'  => $request->nama_lengkap,
                 'jenis_kelamin' => $request->jenis_kelamin,
@@ -122,8 +123,10 @@ class GuruController extends Controller
      */
     public function destroy(Guru $guru)
     {
-        Storage::delete('public/guru/' . basename($guru->foto));
+        Storage::disk('public')->delete('gurus/' . basename($guru->image));
+
         $guru->delete();
+
         return redirect()->route('guru.index')->with('success', 'Data Guru berhasil dihapus!');
     }
 }

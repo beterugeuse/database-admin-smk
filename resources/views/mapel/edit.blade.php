@@ -7,7 +7,6 @@
             <h6 class="m-0 font-weight-bold text-primary">Edit Mata Pelajaran: {{ $mapel->nama_mapel }}</h6>
         </div>
         <div class="card-body">
-            {{-- Pastikan route dan variabel ID benar --}}
             <form action="{{ route('mata-pelajaran.update', $mapel) }}" method="POST">
                 @csrf
                 @method("PUT")
@@ -35,6 +34,18 @@
                             <input type="number" name="jam_pelajaran" class="form-control @error('jam_pelajaran') is-invalid @enderror"
                                    value="{{ old('jam_pelajaran', $mapel->jam_pelajaran) }}">
                             @error('jam_pelajaran') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Guru Pengampu</label>
+                            <select name="guru_id" class="form-control @error('guru_id') is-invalid @enderror">
+                                @foreach($gurus as $g)
+                                    <option value="{{ $g->id }}" {{ old('guru_id', $mapel->guru_id) == $g->id ? 'selected' : '' }}>
+                                        {{ $g->nama_lengkap }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('guru_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="mb-3">

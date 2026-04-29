@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MapelRequest;
 use App\Models\Mapel;
 use App\Models\Jurusan;
+use App\Models\Guru;
 use Illuminate\Http\Request;
 
 class MapelController extends Controller
@@ -14,8 +15,7 @@ class MapelController extends Controller
      */
     public function index()
     {
-        $mapel = Mapel::latest()->paginate(5);
-
+        $mapel = Mapel::orderBy('id', 'asc')->paginate(10);
         return view('mapel.index', compact('mapel'));
     }
 
@@ -25,8 +25,9 @@ class MapelController extends Controller
     public function create()
     {
         $jurusans = Jurusan::all();
+        $gurus = Guru::all();
 
-        return view('mapel.create', compact('jurusans'));
+        return view('mapel.create', compact('jurusans', 'gurus'));
     }
 
     /**
@@ -35,12 +36,14 @@ class MapelController extends Controller
     public function store(MapelRequest $request)
     {
         Mapel::create([
-            'kode_mapel' => $request->kode_mapel,
-            'nama_mapel' => $request->nama_mapel,
+            'kode_mapel'    => $request->kode_mapel,
+            'nama_mapel'    => $request->nama_mapel,
             'jam_pelajaran' => $request->jam_pelajaran,
-            'jurusan_id' => $request->jurusan_id,
+            'guru_id'       => $request->guru_id,
+            'jurusan_id'    => $request->jurusan_id,
         ]);
-        return to_route('mata-pelajaran.index')->with('success', 'Mapel berhasil ditambahkan!');
+
+        return to_route('mata-pelajaran.index')->with('success', 'Data Mapel berhasil disimpan!');
     }
 
     /**
@@ -48,17 +51,20 @@ class MapelController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $mapel = Mapel::with(['guru', 'jurusan'])->findOrFail($id);
+
+        return view('mapel.show', compact('mapel'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Mapel $mapel)
     {
-        $mapel = Mapel::find($id);
         $jurusans = Jurusan::all();
-        return view('mapel.edit', compact('mapel', 'jurusans'));
+        $gurus = Guru::all();
+
+        return view('mapel.edit', compact('mapel', 'jurusans', 'gurus'));
     }
 
     /**
@@ -66,9 +72,11 @@ class MapelController extends Controller
      */
     public function update(MapelRequest $request, Mapel $mapel)
     {
-        $data = $request->only(['kode_mapel', 'nama_mapel', 'jam_pelajaran', 'jurusan_id']);
-        $mapel->update($data);
-        return to_route('mata-pelajaran.index')->with('success', 'Mapel berhasil diupdate!');
+        $mapel->update($request->only([
+            'kode_mapel', 'nama_mapel', 'jam_pelajaran', 'guru_id', 'jurusan_id'
+        ]));
+
+        return to_route('mata-pelajaran.index')->with('success', 'Data Mapel berhasil diupdate!');
     }
 
     /**

@@ -50,9 +50,9 @@ class KelasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Kelas $kelas)
     {
-        //
+        return view('kelas.show', compact('kelas'));
     }
 
     /**

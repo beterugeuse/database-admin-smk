@@ -79,22 +79,26 @@
                             </select>
                             @error('status_kepegawaian') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
-
-                        <div class="mb-3">
-                            <label>Foto Guru</label>
-                            <div class="mb-2">
-                                <small class="text-muted">Foto Saat Ini:</small><br>
-                                @if($guru->foto)
-                                    <img src="{{ asset('storage/gurus/' . $guru->foto) }}" width="80" class="img-thumbnail">
-                                @else
-                                    <span class="badge badge-secondary">Belum ada foto</span>
-                                @endif
-                            </div>
-                            <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror">
-                            <small class="text-info">*Kosongkan jika tidak ingin mengganti foto</small>
-                            @error('foto') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
                     </div>
+                </div>
+                <div class="mb-3">
+                    <label>Foto Guru</label>
+                    <div class="mb-2">
+                        <td class="text-center">
+                        @if($guru->image)
+                            <img src="{{ $guru->image }}"
+                                width="100" height="110"
+                                style="object-fit: cover; border-radius: 6px; border: 2px solid #e3e6f0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        @else
+                            <div style="width:45px; height:45px; border-radius:50%; background-color:#858796; display:inline-flex; align-items:center; justify-content:center;">
+                                <i class="fas fa-user" style="color:#fff; font-size:18px;"></i>
+                            </div>
+                        @endif
+                    </td>
+                    </div>
+                    <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
+                    <small class="text-info">*Kosongkan jika tidak ingin mengganti foto</small>
+                    @error('image') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
                 <div class="mb-3">

@@ -41,9 +41,9 @@ class JurusanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Jurusan $jurusan)
     {
-        //
+        return view('jurusan.show', compact('jurusan'));
     }
 
     /**

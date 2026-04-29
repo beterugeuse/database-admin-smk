@@ -32,6 +32,19 @@
                         </div>
 
                         <div class="mb-3">
+                            <label>Guru Pengampu</label>
+                            <select name="guru_id" class="form-control @error('guru_id') is-invalid @enderror">
+                                <option value="">-- Pilih Guru Pengampu --</option>
+                                @foreach($gurus as $guru)
+                                    <option value="{{ $guru->id }}" {{ old('jurusan_id') == $guru->id ? 'selected' : '' }}>
+                                        {{ $guru->nama_lengkap }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('guru_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
+
+                        <div class="mb-3">
                             <label>Jurusan</label>
                             <select name="jurusan_id" class="form-control @error('jurusan_id') is-invalid @enderror">
                                 <option value="">-- Pilih Jurusan --</option>

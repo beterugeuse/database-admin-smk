@@ -8,15 +8,27 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['nip', 'nama_lengkap', 'jenis_kelamin', 'tanggal_lahir', 'pendidikan_terakhir', 'jabatan', 'no_telp', 'email', 'alamat', 'status_kepegawaian', 'foto'])]
+#[Fillable([
+    'nip',
+    'nama_lengkap',
+    'jenis_kelamin',
+    'tanggal_lahir',
+    'pendidikan_terakhir',
+    'jabatan',
+    'no_telp',
+    'email',
+    'alamat',
+    'status_kepegawaian',
+    'image'
+])]
 class Guru extends Model
 {
     use HasFactory;
 
-    protected function foto(): Attribute
+    protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn ($foto) => url('/storage/guru/' . $foto),
+            get: fn ($image) => url('/storage/gurus/' . $image),
         );
     }
 

@@ -7,11 +7,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['kode_mapel', 'nama_mapel', 'jam_pelajaran', 'jurusan_id'])]
+#[Fillable(['kode_mapel', 'nama_mapel', 'jam_pelajaran', 'guru_id', 'jurusan_id'])]
 
 class Mapel extends Model
 {
     use HasFactory;
+
+    public function guru(): BelongsTo
+    {
+        // relasi ke guru
+        return $this->belongsTo(Guru::class, 'guru_id');
+    }
 
     public function jurusan(): BelongsTo
     {

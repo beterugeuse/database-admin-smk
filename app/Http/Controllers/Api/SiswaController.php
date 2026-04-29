@@ -41,7 +41,7 @@ class SiswaController extends Controller
             'email'         => 'required|email|unique:siswas,email',
             'kelas_id'      => 'required|exists:kelas,id',
             'status'        => 'required|in:Aktif,Alumni,Pindah,Keluar',
-            'foto'          => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Maksimal 2MB
+            'image'         => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         //check if validation fails
@@ -49,9 +49,9 @@ class SiswaController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        // upload foto
-        $foto = $request->file('foto');
-        $foto->storeAs('public/siswa', $foto->hashName());
+        // upload image
+        $image = $request->file('image');
+        $image->storeAs('siswas', $image->hashName(), 'public');
 
         //create siswa
         $siswa = Siswa::create([
@@ -66,7 +66,7 @@ class SiswaController extends Controller
             'email'         => $request->email,
             'kelas_id'      => $request->kelas_id,
             'status'        => $request->status,
-            'foto'          => $foto->hashName(),
+            'image'         => $image->hashName(),
         ]);
 
         //return response
@@ -107,19 +107,19 @@ class SiswaController extends Controller
         //find guru by ID
         $siswa = Siswa::find($id);
 
-        // check if foto is not empty
-        if ($request->hasFile('foto')) {
+        // check if image is not empty
+        if ($request->hasFile('image')) {
 
-            // upload foto
-            $foto = $request->file('foto');
-            $foto->storeAs('public/siswa/', $foto->hashName());
+            // upload image
+            $image = $request->file('image');
+            $image->storeAs('siswas', $image->hashName(), 'public');
 
-            // delete old foto
-            Storage::delete('public/siswa/' . basename($siswa->foto));
+            // delete old image
+            Storage::disk('public')->delete('gurus/' . basename($siswa->image));
 
-            // update guru with new foto
+            // update guru with new image
             $siswa->update([
-                'foto'          => $foto->hashName(),
+                'image'         => $image->hashName(),
                 'nis'           => $request->nis,
                 'nisn'          => $request->nisn,
                 'nama_lengkap'  => $request->nama_lengkap,
@@ -135,7 +135,7 @@ class SiswaController extends Controller
 
         } else {
 
-            // update siswa without foto
+            // update siswa without image
             $siswa->update([
                 'nis'           => $request->nis,
                 'nisn'          => $request->nisn,
@@ -158,13 +158,13 @@ class SiswaController extends Controller
     public function destroy($id)
     {
 
-        //find guru by ID
+        //find siswa by ID
         $siswa = Siswa::find($id);
 
-        // delete foto
-        Storage::delete('public/siswa/' . basename($siswa->foto));
+        // delete image
+        Storage::disk('public')->delete('siswas/' . basename($siswa->image));
 
-        //delete guru
+        //delete siswa
         $siswa->delete();
 
         //return response

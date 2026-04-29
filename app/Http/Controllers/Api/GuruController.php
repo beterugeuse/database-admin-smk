@@ -40,7 +40,7 @@ class GuruController extends Controller
             'email'         => 'required',
             'alamat'        => 'required',
             'status_kepegawaian' => 'required',
-            'foto'          => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image'         => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         //check if validation fails
@@ -49,8 +49,9 @@ class GuruController extends Controller
         }
 
         // upload foto
-        $foto = $request->file('foto');
-        $foto->storeAs('public/guru', $foto->hashName());
+        $image = $request->file('image');
+        $image->storeAs('gurus', $image->hashName(), 'public');
+
 
         //create guru
         $guru = Guru::create([
@@ -64,14 +65,14 @@ class GuruController extends Controller
             'email'         => $request->email,
             'alamat'        => $request->alamat,
             'status_kepegawaian' => $request->status_kepegawaian,
-            'foto'          => $foto->hashName(),
+            'image'          => $image->hashName(),
         ]);
 
         //return response
         return new GuruResource(true, 'Data Guru Berhasil Ditambahkan!', $guru);
     }
 
-    public function show($id)
+    public function show(string $id)
     {
         //find guru by ID
         $guru = Guru::find($id);
@@ -80,7 +81,7 @@ class GuruController extends Controller
         return new GuruResource(true, 'Detail Data Guru!', $guru);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
         //define validation rules
         $validator = Validator::make($request->all(), [
@@ -104,19 +105,19 @@ class GuruController extends Controller
         //find guru by ID
         $guru = Guru::find($id);
 
-        // check if foto is not empty
-        if ($request->hasFile('foto')) {
+        // check if image is not empty
+        if ($request->hasFile('image')) {
 
-            // upload foto
-            $foto = $request->file('foto');
-            $foto->storeAs('public/guru/', $foto->hashName());
+            // upload iamge
+            $image = $request->file('image');
+            $image->storeAs('gurus', $image->hashName(), 'public');
 
-            // delete old foto
-            Storage::delete('public/guru/' . basename($guru->foto));
+            // delete old image
+            Storage::disk('public')->delete('gurus/' . basename($guru->image));
 
-            // update guru with new foto
+            // update guru with new image
             $guru->update([
-                'foto'          => $foto->hashName(),
+                'image'         => $image->hashName(),
                 'nip'           => $request->nip,
                 'nama_lengkap'  => $request->nama_lengkap,
                 'jenis_kelamin' => $request->jenis_kelamin,
@@ -130,7 +131,7 @@ class GuruController extends Controller
             ]);
         } else {
 
-            // update guru without foto
+            // update guru without image
             $guru->update([
                 'nip'           => $request->nip,
                 'nama_lengkap'  => $request->nama_lengkap,
@@ -156,7 +157,7 @@ class GuruController extends Controller
         $guru = Guru::find($id);
 
         // delete foto
-        Storage::delete('public/guru/' . basename($guru->foto));
+        Storage::disk('public')->delete('gurus/' . basename($guru->image));
 
         //delete guru
         $guru->delete();

@@ -15,9 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('siswa_id')->constrained('siswas')->onDelete('cascade');
             $table->foreignId('mapel_id')->constrained('mapels')->onDelete('cascade');
-            $table->foreignId('guru_id')->constrained('gurus')->onDelete('cascade');
-
-            $table->tinyInteger('semester');
             $table->decimal('nilai_uts', 5, 2);
             $table->decimal('nilai_uas', 5, 2);
             $table->decimal('nilai_akhir', 5, 2);
@@ -30,6 +27,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nilais');
+        Schema::table('nilais', function (Blueprint $table) {
+            $table->tinyInteger('semester')->after('guru_id');
+        });
     }
 };

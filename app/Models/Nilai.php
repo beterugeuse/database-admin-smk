@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[Fillable([
-    'siswa_id', 'mapel_id', 'guru_id',
-    'semester', 'nilai_uts', 'nilai_uas', 'nilai_akhir'
+    'siswa_id',
+    'mapel_id',
+    'guru_id',
+    'nilai_uts',
+    'nilai_uas',
+    'nilai_akhir'
 ])]
 
 class Nilai extends Model
@@ -23,11 +27,5 @@ class Nilai extends Model
     public function mapel(): BelongsTo
     {
         return $this->belongsTo(Mapel::class);
-    }
-
-    // relasi ke tabel guru
-    public function guru(): BelongsTo
-    {
-        return $this->belongsTo(Guru::class);
     }
 }

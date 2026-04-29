@@ -21,16 +21,16 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
     'email',
     'kelas_id',
     'status',
-    'foto'
+    'image'
 ])]
 class Siswa extends Model
 {
     use HasFactory;
 
-    protected function foto(): Attribute
+    protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn ($foto) => url('/storage/guru/' . $foto),
+            get: fn ($image) => url('/storage/siswas/' . $image),
         );
     }
 

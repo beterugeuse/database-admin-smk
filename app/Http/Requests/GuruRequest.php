@@ -38,7 +38,7 @@ class GuruRequest extends FormRequest
 
             // Untuk foto, kita validasi sebagai file gambar jika ada upload
             // Gunakan 'nullable' saat update agar foto lama tidak hilang jika tidak ganti
-            'foto'                => $this->isMethod('post')
+            'image'                => $this->isMethod('post')
                                     ? 'required|image|mimes:jpeg,png,jpg|max:2048'
                                     : 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ];
@@ -49,8 +49,8 @@ class GuruRequest extends FormRequest
         return [
             'nip.unique'     => 'NIP sudah terdaftar di sistem.',
             'email.unique'   => 'Alamat email sudah digunakan oleh guru lain.',
-            'foto.image'     => 'File yang diupload harus berupa gambar.',
-            'foto.max'       => 'Ukuran foto maksimal adalah 2MB.',
+            'image.image'     => 'File yang diupload harus berupa gambar.',
+            'image.max'       => 'Ukuran foto maksimal adalah 2MB.',
             '*.required'     => 'Kolom :attribute wajib diisi.',
             '*.in'           => 'Pilihan pada :attribute tidak valid.',
         ];

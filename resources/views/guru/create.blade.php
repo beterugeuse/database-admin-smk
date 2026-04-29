@@ -85,9 +85,9 @@
 
                         <div class="mb-3">
                             <label>Foto Guru</label>
-                            <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror">
+                            <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
                             <small class="text-muted">Format: jpg, jpeg, png. Maks: 2MB</small>
-                            @error('foto') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            @error('image') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
                 </div>

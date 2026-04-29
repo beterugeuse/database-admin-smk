@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\SiswaController;
 use App\Http\Controllers\SiswaController as ControllersSiswaController;
 
 Route::middleware(['auth:sanctum'])
@@ -27,12 +26,11 @@ Route::middleware(['auth:sanctum'])
     // kelas
     Route::apiResource('/kelas', KelasController::class);
 
-    // jadwal
-    Route::apiResource('/jadwal-pelajaran', JadwalPelajaranController::class);
-
-
     // siswa
     Route::apiResource('/siswa', SiswaController::class);
+
+    // nilai
+    Route::apiResource('/nilai', NilaiController::class);
 });
 
 Route::post('login', [AuthController::class, 'login']);

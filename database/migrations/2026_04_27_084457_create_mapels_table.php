@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama_mapel');
             $table->tinyInteger('jam_pelajaran');
 
+            $table->foreignId('guru_id')->constrained('gurus')->onDelete('cascade');
             $table->foreignId('jurusan_id')->constrained('jurusans')->onDelete('cascade');
 
             $table->timestamps();

@@ -22,7 +22,7 @@ class MapelController extends Controller
         $mapels = Mapel::latest()->paginate(5);
 
         //return collection of mapel as a resource
-        return new MapelResource(true, 'List Data Jurusan', $mapels);
+        return new MapelResource(true, 'List Data Mapel', $mapels);
     }
 
     public function store(Request $request)
@@ -32,6 +32,7 @@ class MapelController extends Controller
             'kode_mapel'    => 'required',
             'nama_mapel'    => 'required',
             'jam_pelajaran' => 'required',
+            'guru_id'       => 'required|exists:gurus,id',
             'jurusan_id'    => 'required|exists:jurusans,id',
         ]);
 
@@ -45,6 +46,7 @@ class MapelController extends Controller
             'kode_mapel'  => $request->kode_mapel,
             'nama_mapel'  => $request->nama_mapel,
             'jam_pelajaran' => $request->jam_pelajaran,
+            'guru_id'     => $request->guru_id,
             'jurusan_id'  => $request->jurusan_id,
         ]);
 
@@ -68,6 +70,7 @@ class MapelController extends Controller
             'kode_mapel'    => 'required',
             'nama_mapel'    => 'required',
             'jam_pelajaran' => 'required',
+            'guru_id'       => 'required|exists:gurus,id',
             'jurusan_id'    => 'required|exists:jurusans,id',
         ]);
 
@@ -84,6 +87,7 @@ class MapelController extends Controller
             'kode_mapel'  => $request->kode_mapel,
             'nama_mapel'  => $request->nama_mapel,
             'jam_pelajaran' => $request->jam_pelajaran,
+            'guru_id'     => $request->guru_id,
             'jurusan_id'  => $request->jurusan_id,
         ]);
 
