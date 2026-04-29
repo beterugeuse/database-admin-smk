@@ -36,8 +36,8 @@ class GuruRequest extends FormRequest
             'alamat'              => 'required|string',
             'status_kepegawaian'  => 'required|in:PNS,PPPK,Honorer,Tetap,Kontrak',
 
-            // Untuk foto, kita validasi sebagai file gambar jika ada upload
-            // Gunakan 'nullable' saat update agar foto lama tidak hilang jika tidak ganti
+            // kita validasi sebagai file gambar jika ada upload
+            // gunakan 'nullable' saat update agar foto lama tidak hilang jika tidak ganti
             'image'                => $this->isMethod('post')
                                     ? 'required|image|mimes:jpeg,png,jpg|max:2048'
                                     : 'nullable|image|mimes:jpeg,png,jpg|max:2048',

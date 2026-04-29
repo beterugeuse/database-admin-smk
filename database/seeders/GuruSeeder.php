@@ -38,7 +38,7 @@ class GuruSeeder extends Seeder
                 'email'             => 'senku@smk.edu',
                 'alamat'            => 'Kopo Permai Blok C, Bandung',
                 'status_kepegawaian' => 'PNS',
-                'image'             => 'ishigami-senku.png',
+                'image'             => 'https://practicaltyping.com/wp-content/uploads/2024/11/Senku.png',
             ],
 
             [
@@ -52,7 +52,7 @@ class GuruSeeder extends Seeder
                 'email'             => 'ukai@gmail.com',
                 'alamat'            => 'Cicaheum Raya No. 45, Bandung',
                 'status_kepegawaian' => 'Honorer',
-                'image'             => 'ukai-keishin.jpg',
+                'image'             => 'https://static.wikia.nocookie.net/haikyuu/images/b/bc/Keishin_s3_e8.png',
             ],
             [
                 'nip'               => '197809152005011004',
@@ -65,7 +65,7 @@ class GuruSeeder extends Seeder
                 'email'             => 'agus.setiawan@smk.edu',
                 'alamat'            => 'Jl. Antapani No. 22, Bandung',
                 'status_kepegawaian' => 'PNS',
-                'image'             => 'guru-4.jpg',
+                'image'             => 'https://selfietime.id/storage/blogs/images/6DsiqMJEPyMcbXaKpsVkLTlHhxacDZq5MmU1Ing1.png',
             ],
             [
                 'nip'               => '198201012008011005',
@@ -78,7 +78,7 @@ class GuruSeeder extends Seeder
                 'email'             => 'hendra.wijaya@smk.edu',
                 'alamat'            => 'Panyileukan Indah Blok D, Bandung',
                 'status_kepegawaian' => 'PNS',
-                'image'             => 'guru-5.jpg',
+                'image'             => 'https://selfietime.sgp1.cdn.digitaloceanspaces.com/development/public/1288706/5p6lG5b8sLSstCJIxYevazaMvosmkp-metaamVvbmd3b28gdHJlam8gY292ZXIgKDEpLmpwZw==-.jpg',
             ],
             [
                 'nip'               => '199503072021012006',
@@ -91,7 +91,7 @@ class GuruSeeder extends Seeder
                 'email'             => 'rina.marlina@smk.edu',
                 'alamat'            => 'Gegerkalong Girang No. 12, Bandung',
                 'status_kepegawaian' => 'Tetap',
-                'image'             => 'guru-6.jpg',
+                'image'             => 'https://us.oricon-group.com/upimg/sns/2000/2940/img1200/jjk-EP30%20(5).jpg',
             ],
             [
                 'nip'               => '199201202018012007',
@@ -117,7 +117,7 @@ class GuruSeeder extends Seeder
                 'email'             => 'maya.indah@smk.edu',
                 'alamat'            => 'Ujung Berung Regency, Bandung',
                 'status_kepegawaian' => 'PPPK',
-                'image'             => 'guru-8.jpg',
+                'image'             => 'https://static.wikia.nocookie.net/haikyuu/images/5/56/Yachi_s4-e13-1.png',
             ],
             [
                 'nip'               => '199612272022012009',
@@ -130,7 +130,7 @@ class GuruSeeder extends Seeder
                 'email'             => 'dini.aminarti@smk.edu',
                 'alamat'            => 'Jl. Terusan Jakarta No. 44, Bandung',
                 'status_kepegawaian' => 'Honorer',
-                'image'             => 'guru-9.jpg',
+                'image'             => 'https://static0.dualshockersimages.com/wordpress/wp-content/uploads/2023/07/shoko-personality.jpg?q=50&fit=crop&w=825&dpr=1.5.jpg',
             ],
             [
                 'nip'               => '199303282019012010',
@@ -143,7 +143,7 @@ class GuruSeeder extends Seeder
                 'email'             => 'ani.suryani@smk.edu',
                 'alamat'            => 'Pasir Kaliki No. 88, Bandung',
                 'status_kepegawaian' => 'PNS',
-                'image'             => 'guru-10.jpg',
+                'image'             => 'https://static0.cbrimages.com/wordpress/wp-content/uploads/2023/02/jujutsu-kaisen-suguru-geto.jpg',
             ],
             [
                 'nip'               => '198512252007011011',
@@ -156,7 +156,7 @@ class GuruSeeder extends Seeder
                 'email'             => 'bambang.p@smk.edu',
                 'alamat'            => 'Cibiru Raya No. 101, Bandung',
                 'status_kepegawaian' => 'PNS',
-                'image'             => 'guru-11.jpg',
+                'image'             => 'https://www.mldspot.com/storage/generated/June2021/TulusKonser.jpg',
             ],
             [
                 'nip'               => '199006182015011012',
@@ -169,7 +169,7 @@ class GuruSeeder extends Seeder
                 'email'             => 'rizky.pratama@smk.edu',
                 'alamat'            => 'Baleendah Indah Blok C, Bandung',
                 'status_kepegawaian' => 'PNS',
-                'image'             => 'guru-12.jpg',
+                'image'             => 'https://cdn.antaranews.com/cache/1200x800/2017/11/Kunto_Aji-.jpg',
             ],
         ];
 
