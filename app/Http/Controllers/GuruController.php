@@ -105,7 +105,7 @@ class GuruController extends Controller
             
             // update guru with new foto
             $guru->update([
-                'image'         => $nama_file,
+                'image'         => $nama_file_baru,
                 'nip'           => $request->nip,
                 'nama_lengkap'  => $request->nama_lengkap,
                 'jenis_kelamin' => $request->jenis_kelamin,
@@ -142,7 +142,18 @@ class GuruController extends Controller
      */
     public function destroy(Guru $guru)
     {
-        Storage::disk('public')->delete('gurus/' . basename($guru->image));
+        
+        // 2. Proses hapus foto dari folder public/gurus
+        if ($guru->image) {
+            // basename() memotong URL (hasil Accessor) jadi nama file saja
+            $nama_file = basename($guru->image); 
+            $path_file = public_path('gurus/' . $nama_file);
+    
+            // Cek apakah filenya benar-benar ada di folder sebelum dihapus
+            if (File::exists($path_file)) {
+                File::delete($path_file);
+            }
+        }
 
         $guru->delete();
 
