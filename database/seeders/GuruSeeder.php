@@ -24,7 +24,7 @@ class GuruSeeder extends Seeder
                 'email'             => 'gojo@smk.edu',
                 'alamat'            => 'Jl. Buah Batu No. 123, Bandung',
                 'status_kepegawaian'=> 'PNS',
-                'image'             => 'https://static.wikia.nocookie.net/jujutsu-kaisen/images/5/5a/Satoru_Gojo_arrives_on_the_battlefield_%28Anime%29.png/revision/latest?cb=20210226205256',
+                'image'             => 'https://cdng.europosters.eu/pod_public/750/235240.jpg',
             ],
 
             [

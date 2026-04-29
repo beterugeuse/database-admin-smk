@@ -28,7 +28,7 @@ class Guru extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn ($image) => str_starts_with($image, 'http')
+            get: fn ($image) => str_starts_with($image, 'https')
                 ? $image
                 : url('/storage/gurus/' . $image),
         );
