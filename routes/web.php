@@ -11,6 +11,8 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\AuthController;
 
+Route::redirect('/', '/dashboard');
+
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');

@@ -21,7 +21,6 @@ class GuruController extends Controller
     {
         //get all guru
         $gurus = Guru::latest()->paginate(5);
-
         //return collection of guru as a resource
         return new GuruResource(true, 'List Data Guru', $gurus);
     }
