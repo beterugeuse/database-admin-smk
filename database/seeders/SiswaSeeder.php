@@ -46,7 +46,7 @@ class SiswaSeeder extends Seeder
                 'email'         => 'siti@gmail.com',
                 'kelas_id'      => $pplg->id,
                 'status'        => 'Aktif',
-                'image'         => 'siswa-2.jpg',
+                'image'         => 'https://i.pinimg.com/736x/ba/5a/70/ba5a7064b4b1f9b260df25901008e21c.jpg',
             ],
 
             [
@@ -61,7 +61,7 @@ class SiswaSeeder extends Seeder
                 'email'         => 'rendi@gmail.com',
                 'kelas_id'      => $tjkt->id,
                 'status'        => 'Aktif',
-                'image'         => 'siswa-3.jpg',
+                'image'         => 'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/11/Jujutsu-Kaisen-Itadori.jpg',
             ],
 
             [
@@ -76,7 +76,7 @@ class SiswaSeeder extends Seeder
                 'email'         => 'budi@gmail.com',
                 'kelas_id'      => $tjkt->id,
                 'status'        => 'Aktif',
-                'image'         => 'siswa-4.jpg',
+                'image'         => 'https://static.wikia.nocookie.net/haikyuu-fanon/images/1/19/Atsumu_Miya.jpg',
             ],
 
             [
@@ -91,82 +91,7 @@ class SiswaSeeder extends Seeder
                 'email'         => 'putra@gmail.com',
                 'kelas_id'      => $anm->id,
                 'status'        => 'Aktif',
-                'image'         => 'siswa-5.jpg',
-            ],
-
-            [
-                'nis'           => '222310006',
-                'nisn'          => '0081234566',
-                'nama_lengkap'  => 'Eko Prasetyo',
-                'jenis_kelamin' => 'Laki-Laki',
-                'tanggal_lahir' => '2008-07-25',
-                'agama'         => 'Islam',
-                'alamat'        => 'Jl. Cicaheum No. 6, Bandung',
-                'no_telp'       => '081200000006',
-                'email'         => 'eko@gmail.com',
-                'kelas_id'      => $anm->id,
-                'status'        => 'Aktif',
-                'image'         => 'siswa-6.jpg',
-            ],
-
-            [
-                'nis'           => '222310007',
-                'nisn'          => '0081234567',
-                'nama_lengkap'  => 'Zeno Febri',
-                'jenis_kelamin' => 'Laki-Laki',
-                'tanggal_lahir' => '2008-09-30',
-                'agama'         => 'Islam',
-                'alamat'        => 'Jl. Setiabudi No. 7, Bandung',
-                'no_telp'       => '081200000007',
-                'email'         => 'zeno@gmail.com',
-                'kelas_id'      => $pplg->id,
-                'status'        => 'Aktif',
-                'image'         => 'siswa-7.jpg',
-            ],
-
-            [
-                'nis'           => '222310008',
-                'nisn'          => '0081234568',
-                'nama_lengkap'  => 'Gilang Ramadhan',
-                'jenis_kelamin' => 'Laki-Laki',
-                'tanggal_lahir' => '2008-10-15',
-                'agama'         => 'Islam',
-                'alamat'        => 'Jl. Cibaduyut No. 8, Bandung',
-                'no_telp'       => '081200000008',
-                'email'         => 'gilang@gmail.com',
-                'kelas_id'      => $tjkt->id,
-                'status'        => 'Aktif',
-                'image'         => 'siswa-8.jpg',
-            ],
-
-            [
-                'nis'           => '222310009',
-                'nisn'          => '0081234569',
-                'nama_lengkap'  => 'Hanif Bagas',
-                'jenis_kelamin' => 'Laki-Laki',
-                'tanggal_lahir' => '2008-12-22',
-                'agama'         => 'Islam',
-                'alamat'        => 'Jl. Gedebage No. 9, Bandung',
-                'no_telp'       => '081200000009',
-                'email'         => 'hanif@gmail.com',
-                'kelas_id'      => $anm->id,
-                'status'        => 'Aktif',
-                'image'         => 'siswa-9.jpg',
-            ],
-
-            [
-                'nis'           => '222310010',
-                'nisn'          => '0081234570',
-                'nama_lengkap'  => 'Indra Wijaya',
-                'jenis_kelamin' => 'Laki-Laki',
-                'tanggal_lahir' => '2008-01-05',
-                'agama'         => 'Kristen',
-                'alamat'        => 'Jl. Asia Afrika No. 10, Bandung',
-                'no_telp'       => '081200000010',
-                'email'         => 'indra@gmail.com',
-                'kelas_id'      => $pplg->id,
-                'status'        => 'Aktif',
-                'image'         => 'siswa-10.jpg',
+                'image'         => 'https://i.pinimg.com/736x/8b/ca/e1/8bcae1e13613ba72a67c3be6b779d2a1.jpg',
             ],
         ];
 

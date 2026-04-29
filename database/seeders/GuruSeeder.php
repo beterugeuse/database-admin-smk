@@ -104,7 +104,7 @@ class GuruSeeder extends Seeder
                 'email'             => 'sari.fatimah@smk.edu',
                 'alamat'            => 'Arcamanik Residence, Bandung',
                 'status_kepegawaian' => 'PNS',
-                'image'             => 'guru-7.jpg',
+                'image'             => 'https://i.pinimg.com/736x/9c/7e/9c/9c7e9c6f99a7cd29cbf4295c33d5ed8a.jpg',
             ],
             [
                 'nip'               => '199402102020012008',
