@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Guru;
 use App\Http\Resources\GuruResource;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class GuruController extends Controller
 {
@@ -49,10 +49,10 @@ class GuruController extends Controller
 
         // 1. Ambil file dari request
         $file = $request->file('image');
-    
+
         // 2. Buat nama unik (ini adalah STRING)
         $nama_file = time() . "_" . $file->getClientOriginalName();
-    
+
         // 3. SIMPAN file fisiknya ke folder public/gurus
         $file->move(public_path('gurus'), $nama_file);
 
@@ -69,7 +69,7 @@ class GuruController extends Controller
             'email'         => $request->email,
             'alamat'        => $request->alamat,
             'status_kepegawaian' => $request->status_kepegawaian,
-            'image'          => $image->hashName(),
+            'image'          => $nama_file,
         ]);
 
         //return response
@@ -115,19 +115,19 @@ class GuruController extends Controller
                 // --- PROSES HAPUS FOTO LAMA ---
             if ($guru->image) {
                 // Kita ambil nama filenya saja dari URL Accessor
-                $nama_file_lama = basename($guru->image); 
+                $nama_file_lama = basename($guru->image);
                 $path_file_lama = public_path('gurus/' . $nama_file_lama);
-    
+
                 // Hapus file dari folder public/gurus jika ada
                 if (File::exists($path_file_lama)) {
                     File::delete($path_file_lama);
                 }
             }
-    
+
             // --- PROSES UPLOAD FOTO BARU ---
             $file = $request->file('image');
             $nama_file_baru = time() . "_" . $file->getClientOriginalName();
-            
+
             // Pindah ke public/gurus
             $file->move(public_path('gurus'), $nama_file_baru);
 
@@ -175,9 +175,9 @@ class GuruController extends Controller
             // proses hapus foto dari folder public/gurus
         if ($guru->image) {
             // basename() memotong URL (hasil Accessor) jadi nama file saja
-            $nama_file = basename($guru->image); 
+            $nama_file = basename($guru->image);
             $path_file = public_path('gurus/' . $nama_file);
-    
+
             // cek apakah filenya benar-benar ada di folder sebelum dihapus
             if (File::exists($path_file)) {
                 File::delete($path_file);

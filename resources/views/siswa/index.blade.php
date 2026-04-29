@@ -65,7 +65,6 @@
                                 <td class="text-center">
                                     @if($s->image)
                                         <img src="{{ $s->image }}" width="100">
-                                        <span>{{$s->image}}</span>
                                     @endif
                                 </td>
                                 <td>{{ $s->nis }}</td>
