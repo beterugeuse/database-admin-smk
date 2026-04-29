@@ -24,7 +24,7 @@ class GuruSeeder extends Seeder
                 'email'             => 'gojo@smk.edu',
                 'alamat'            => 'Jl. Buah Batu No. 123, Bandung',
                 'status_kepegawaian'=> 'PNS',
-                'image'             => 'https://cdng.europosters.eu/pod_public/750/235240.jpg',
+                'image'             => 'gojo-satoru.jpeg',
             ],
 
             [
