@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Http\Resources\SiswaResource;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class SiswaController extends Controller
 {
@@ -49,9 +49,14 @@ class SiswaController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        // upload image
-        $image = $request->file('image');
-        $image->storeAs('siswas', $image->hashName(), 'public');
+        // 1. Ambil file dari request
+        $file = $request->file('image');
+
+        // 2. Buat nama unik (ini adalah STRING)
+        $nama_file = time() . "_" . $file->getClientOriginalName();
+
+        // 3. SIMPAN file fisiknya ke folder public/siswas
+        $file->move(public_path('siswas'), $nama_file);
 
         //create siswa
         $siswa = Siswa::create([
@@ -66,7 +71,7 @@ class SiswaController extends Controller
             'email'         => $request->email,
             'kelas_id'      => $request->kelas_id,
             'status'        => $request->status,
-            'image'         => $image->hashName(),
+            'image'         => $nama_file,
         ]);
 
         //return response
@@ -110,16 +115,28 @@ class SiswaController extends Controller
         // check if image is not empty
         if ($request->hasFile('image')) {
 
-            // upload image
-            $image = $request->file('image');
-            $image->storeAs('siswas', $image->hashName(), 'public');
+            // --- PROSES HAPUS FOTO LAMA ---
+            if ($siswa->image) {
+                // Kita ambil nama filenya saja dari URL Accessor
+                $nama_file_lama = basename($siswa->image);
+                $path_file_lama = public_path('siswas/' . $nama_file_lama);
 
-            // delete old image
-            Storage::disk('public')->delete('gurus/' . basename($siswa->image));
+                // Hapus file dari folder public/gurus jika ada
+                if (File::exists($path_file_lama)) {
+                    File::delete($path_file_lama);
+                }
+            }
+
+            // --- PROSES UPLOAD FOTO BARU ---
+            $file = $request->file('image');
+            $nama_file_baru = time() . "_" . $file->getClientOriginalName();
+
+            // Pindah ke public/gurus
+            $file->move(public_path('gurus'), $nama_file_baru);
 
             // update guru with new image
             $siswa->update([
-                'image'         => $image->hashName(),
+                'image'         => $nama_file_baru,
                 'nis'           => $request->nis,
                 'nisn'          => $request->nisn,
                 'nama_lengkap'  => $request->nama_lengkap,
@@ -161,8 +178,17 @@ class SiswaController extends Controller
         //find siswa by ID
         $siswa = Siswa::find($id);
 
-        // delete image
-        Storage::disk('public')->delete('siswas/' . basename($siswa->image));
+        // proses hapus foto dari folder public/gurus
+        if ($siswa->image) {
+            // basename() memotong URL (hasil Accessor) jadi nama file saja
+            $nama_file = basename($siswa->image);
+            $path_file = public_path('siswas/' . $nama_file);
+
+            // cek apakah filenya benar-benar ada di folder sebelum dihapus
+            if (File::exists($path_file)) {
+                File::delete($path_file);
+            }
+        }
 
         //delete siswa
         $siswa->delete();

@@ -31,10 +31,10 @@ class Guru extends Model
             get: function ($image) {
                 if (!$image) return null;
 
-                // mengarah langsung ke folder public/gurus sesuai cara baru kita
+                // mengarah langsung ke folder public/gurus
                 return asset('/gurus/' . $image);
             },
-        ); 
+        );
     }
 
     public function kelasWali(): HasMany
