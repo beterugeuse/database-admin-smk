@@ -16,7 +16,6 @@ class GuruController extends Controller
     {
         $guru = Guru::latest()->paginate(10);
 
-        dd($guru);
         return view('guru.index', compact('guru'));
     }
 
@@ -33,6 +32,7 @@ class GuruController extends Controller
      */
     public function store(GuruRequest $request)
     {
+        dd($request->all());
         // upload foto
         $image = $request->file('image');
         $image->storeAs('gurus', $image->hashName(), 'public');
