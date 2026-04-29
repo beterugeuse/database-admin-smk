@@ -12,19 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('siswas', function (Blueprint $table) {
-            Schema::table('siswas', function (Blueprint $table) {
+            // Check if 'foto' exists before trying to rename it
+            if (Schema::hasColumn('siswas', 'foto')) {
                 $table->renameColumn('foto', 'image');
-            });
+            }
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::table('siswas', function (Blueprint $table) {
-            //
+            // Check if 'image' exists before trying to revert it
+            if (Schema::hasColumn('siswas', 'image')) {
+                $table->renameColumn('image', 'foto');
+            }
         });
     }
 };

@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
             GuruSeeder::class,
             KelasSeeder::class,
             MapelSeeder::class,
-
         ]);
 
         User::factory()->create([

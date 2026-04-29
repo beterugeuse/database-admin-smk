@@ -34,7 +34,7 @@ class Guru extends Model
 
     public function kelasWali(): HasMany
     {
-        // Kita pakai 'wali_kelas_id' karena itu nama kolom di tabel kelas
+        // wali_kelas_id karena itu nama kolom di tabel kelas
         return $this->hasMany(Kelas::class, 'wali_kelas_id');
     }
 }

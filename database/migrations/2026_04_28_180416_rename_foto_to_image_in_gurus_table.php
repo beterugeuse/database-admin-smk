@@ -6,20 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::table('gurus', function (Blueprint $table) {
-            $table->renameColumn('foto', 'image');
+        Schema::table('gurus', function (Blueprint $blueprint) {
+            // Only attempt rename if 'foto' exists AND 'image' does NOT exist
+            if (Schema::hasColumn('gurus', 'foto') && !Schema::hasColumn('gurus', 'image')) {
+                $blueprint->renameColumn('foto', 'image');
+            }
         });
     }
 
     public function down(): void
     {
-        Schema::table('gurus', function (Blueprint $table) {
-            $table->renameColumn('image', 'foto');
+        Schema::table('gurus', function (Blueprint $blueprint) {
+            if (Schema::hasColumn('gurus', 'image') && !Schema::hasColumn('gurus', 'foto')) {
+                $blueprint->renameColumn('image', 'foto');
+            }
         });
     }
 };
