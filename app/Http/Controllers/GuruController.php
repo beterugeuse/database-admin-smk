@@ -32,10 +32,15 @@ class GuruController extends Controller
      */
     public function store(GuruRequest $request)
     {
-        dd($request->all());
-        // upload foto
-        $image = $request->file('image');
-        $image->storeAs('gurus', $image->hashName(), 'public');
+        // ambil file
+        $file = $request->file('image');
+    
+        // buat nama unik
+        $nama_file = time() . "_" . $file->getClientOriginalName();
+    
+        // simpan langsung ke folder public/gurus
+        // public_path() akan mengarahkan file ke root_folder/public/gurus
+        $file->move(public_path('gurus'), $nama_file);
 
         //create guru
         $guru = Guru::create([
@@ -49,7 +54,7 @@ class GuruController extends Controller
             'email'         => $request->email,
             'alamat'        => $request->alamat,
             'status_kepegawaian' => $request->status_kepegawaian,
-            'image'          => $image->hashName(),
+            'image'          => $nama_file,
         ]);
 
 
@@ -79,16 +84,28 @@ class GuruController extends Controller
     {
         if ($request->hasFile('image')) {
 
-            // upload foto
-            $image = $request->file('image');
-            $image->storeAs('gurus', $image->hashName(), 'public');
-
-            // delete old foto
-            Storage::disk('public')->delete('gurus/' . basename($guru->image));
-
+            // --- PROSES HAPUS FOTO LAMA ---
+            if ($guru->image) {
+                // Kita ambil nama filenya saja dari URL Accessor
+                $nama_file_lama = basename($guru->image); 
+                $path_file_lama = public_path('gurus/' . $nama_file_lama);
+    
+                // Hapus file dari folder public/gurus jika ada
+                if (File::exists($path_file_lama)) {
+                    File::delete($path_file_lama);
+                }
+            }
+    
+            // --- PROSES UPLOAD FOTO BARU ---
+            $file = $request->file('image');
+            $nama_file_baru = time() . "_" . $file->getClientOriginalName();
+            
+            // Pindah ke public/gurus
+            $file->move(public_path('gurus'), $nama_file_baru);
+            
             // update guru with new foto
             $guru->update([
-                'image'          => $image->hashName(),
+                'image'         => $nama_file,
                 'nip'           => $request->nip,
                 'nama_lengkap'  => $request->nama_lengkap,
                 'jenis_kelamin' => $request->jenis_kelamin,
