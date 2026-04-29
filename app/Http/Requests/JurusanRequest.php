@@ -19,12 +19,9 @@ class JurusanRequest extends FormRequest
      */
     public function rules(): array
     {
-        // Mengambil ID jurusan dari route untuk pengecekan 'unique' saat update
-        // Tergantung penamaan parameter di route kamu (biasanya 'jurusan' atau 'id')
         $jurusanID =  $this->route('jurusan') ?  $this->route('jurusan')->id : null;
 
         return [
-            // Penting: tambahkan koma sebelum $jurusanId agar tidak error saat update
             'kode_jurusan' => 'required|string|max:10|unique:jurusans,kode_jurusan,' . $jurusanID,
             'nama_jurusan' => 'required|string|max:255',
             'deskripsi'    => 'nullable|string'

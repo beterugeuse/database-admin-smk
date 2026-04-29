@@ -20,12 +20,14 @@ class KelasRequest extends FormRequest
      */
     public function rules(): array
     {
+
+     $kelasID =  $this->route('kelas') ?  $this->route('kelas')->id : null;
         return [
-            'nama_kelas'    => 'required|string|max:255',
-            'tingkat'       => 'required|integer|min:10|max:13', // Contoh: Kelas 10-13
-            'tahun_ajaran'  => 'required|string|max:10',      // Contoh: 2025/2026
-            'jurusan_id'    => 'required|exists:jurusans,id', // Harus ada di tabel jurusans
-            'wali_kelas_id' => 'required|exists:gurus,id',    // Harus ada di tabel gurus
+            'nama_kelas'    => 'required|string|max:255|unique:kelas,nama_kelas,' . $kelasID,
+            'tingkat'       => 'required|integer|min:10|max:12',
+            'tahun_ajaran'  => 'required|string|max:10',
+            'jurusan_id'    => 'required|exists:jurusans,id',
+            'wali_kelas_id' => 'required|exists:gurus,id',
             'kapasitas'     => 'required|integer|min:1',
         ];
     }

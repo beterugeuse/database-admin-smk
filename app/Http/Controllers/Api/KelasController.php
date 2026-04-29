@@ -29,7 +29,7 @@ class KelasController extends Controller
     {
         //define validation rules
         $validator = Validator::make($request->all(), [
-            'nama_kelas'    => 'required',
+            'nama_kelas'    => 'unique|required',
             'tingkat'       => 'required',
             'tahun_ajaran'  => 'required',
             'jurusan_id'    => 'required|exists:jurusans,id',
@@ -69,7 +69,7 @@ class KelasController extends Controller
     {
         //define validation rules
         $validator = Validator::make($request->all(), [
-            'nama_kelas'    => 'required',
+            'nama_kelas'    => 'unique|required',
             'tingkat'       => 'required',
             'tahun_ajaran'  => 'required',
             'jurusan_id'    => 'required|exists:jurusans,id',

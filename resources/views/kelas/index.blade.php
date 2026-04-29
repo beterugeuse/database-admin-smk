@@ -64,11 +64,11 @@
                                 <td>Kelas {{ $k->tingkat }}</td>
                                 <td>{{ $k->tahun_ajaran }}</td>
                                 <td>
-                                    {{-- Mengambil nama jurusan dari relasi --}}
+                                    {{-- mengambil nama jurusan dari relasi --}}
                                     {{ $k->jurusan->nama_jurusan }}
                                 </td>
                                 <td>
-                                    {{-- Mengambil nama guru dari relasi waliKelas --}}
+                                    {{-- mengambil nama guru dari relasi waliKelas --}}
                                     {{ $k->waliKelas->nama_lengkap }}
                                 </td>
                                 <td>

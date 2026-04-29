@@ -40,7 +40,9 @@
                             <select name="jurusan_id" class="form-control @error('jurusan_id') is-invalid @enderror">
                                 <option value="">-- Pilih Jurusan --</option>
                                 @foreach($jurusans as $j)
-                                    <option value="{{ $j->id }}" {{ old('jurusan_id') == $j->id ? 'selected' : '' }}>{{ $j->nama_jurusan }}</option>
+                                    <option value="{{ $j->id }}" {{ old('jurusan_id') == $j->id ? 'selected' : '' }}>
+                                        {{ $j->nama_jurusan }} ({{ $j->kode_jurusan }})
+                                    </option>
                                 @endforeach
                             </select>
                             @error('jurusan_id') <div class="invalid-feedback">{{ $message }}</div> @enderror

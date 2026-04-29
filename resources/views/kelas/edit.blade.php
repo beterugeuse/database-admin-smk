@@ -47,7 +47,7 @@
                             <select name="jurusan_id" class="form-control @error('jurusan_id') is-invalid @enderror">
                                 @foreach($jurusans as $j)
                                     <option value="{{ $j->id }}" {{ old('jurusan_id', $kelas->jurusan_id) == $j->id ? 'selected' : '' }}>
-                                        {{ $j->nama_jurusan }}
+                                        {{ $j->nama_jurusan }} ({{ $j->kode_jurusan }})
                                     </option>
                                 @endforeach
                             </select>

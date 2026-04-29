@@ -171,7 +171,10 @@ class SiswaSeeder extends Seeder
         ];
 
         foreach ($data as $siswa) {
-            Siswa::create($siswa);
+            Siswa::updateOrCreate(
+                ['nis' => $siswa['nis']],
+                $siswa
+            );
         }
     }
 }

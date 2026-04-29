@@ -41,7 +41,7 @@
                             <select name="guru_id" class="form-control @error('guru_id') is-invalid @enderror">
                                 @foreach($gurus as $g)
                                     <option value="{{ $g->id }}" {{ old('guru_id', $mapel->guru_id) == $g->id ? 'selected' : '' }}>
-                                        {{ $g->nama_lengkap }}
+                                        {{ $g->nama_lengkap }} - {{ $g->jabatan }}
                                     </option>
                                 @endforeach
                             </select>

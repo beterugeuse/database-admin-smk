@@ -37,7 +37,7 @@
                                 <option value="">-- Pilih Guru Pengampu --</option>
                                 @foreach($gurus as $guru)
                                     <option value="{{ $guru->id }}" {{ old('jurusan_id') == $guru->id ? 'selected' : '' }}>
-                                        {{ $guru->nama_lengkap }}
+                                        {{ $guru->nama_lengkap }} - {{ $guru->jabatan }}
                                     </option>
                                 @endforeach
                             </select>
