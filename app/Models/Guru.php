@@ -28,10 +28,11 @@ class Guru extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn ($image) => str_starts_with($image, 'https')
-                ? $image
-                : url('/storage/gurus/' . $image),
-        );
+        get: function ($image) {
+            if (!$image) return null;
+
+            return asset('/gurus/' . $image);
+        },
     }
 
     public function kelasWali(): HasMany
