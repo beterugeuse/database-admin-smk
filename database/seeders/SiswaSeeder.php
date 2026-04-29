@@ -46,7 +46,7 @@ class SiswaSeeder extends Seeder
                 'email'         => 'siti@gmail.com',
                 'kelas_id'      => $pplg->id,
                 'status'        => 'Aktif',
-                'image'         => 'https://i.pinimg.com/736x/ba/5a/70/ba5a7064b4b1f9b260df25901008e21c.jpg',
+                'image'         => 'siswa-2.jpg',
             ],
 
             [
@@ -61,7 +61,7 @@ class SiswaSeeder extends Seeder
                 'email'         => 'rendi@gmail.com',
                 'kelas_id'      => $tjkt->id,
                 'status'        => 'Aktif',
-                'image'         => 'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/11/Jujutsu-Kaisen-Itadori.jpg',
+                'image'         => 'siswa-3.jpg',
             ],
 
             [
@@ -76,7 +76,7 @@ class SiswaSeeder extends Seeder
                 'email'         => 'budi@gmail.com',
                 'kelas_id'      => $tjkt->id,
                 'status'        => 'Aktif',
-                'image'         => 'https://static.wikia.nocookie.net/haikyuu-fanon/images/1/19/Atsumu_Miya.jpg',
+                'image'         => 'siswa-4.jpg',
             ],
 
             [
@@ -91,7 +91,7 @@ class SiswaSeeder extends Seeder
                 'email'         => 'putra@gmail.com',
                 'kelas_id'      => $anm->id,
                 'status'        => 'Aktif',
-                'image'         => 'https://i.pinimg.com/736x/8b/ca/e1/8bcae1e13613ba72a67c3be6b779d2a1.jpg',
+                'image'         => 'siswa-5.jpg',
             ],
         ];
 
